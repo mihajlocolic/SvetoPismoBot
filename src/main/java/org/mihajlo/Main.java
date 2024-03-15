@@ -18,13 +18,14 @@ import java.util.regex.Pattern;
 
 public class Main extends SearchChapterAndVerses {
 
-    public static void main(String[] args) {
+    public static Dotenv dotenv = Dotenv.load();
 
-        Dotenv dotenv = Dotenv.load();
-        final String BOT_TOKEN = dotenv.get("BOT_TOKEN");
-        final String CONN_URL = dotenv.get("CONN_URL");
-        final String CONN_USER = dotenv.get("CONN_USER");
-        final String CONN_PASSWORD = dotenv.get("CONN_PASSWORD");
+    public static final String BOT_TOKEN = dotenv.get("BOT_TOKEN");
+    public static final String CONN_URL = dotenv.get("CONN_URL");
+    public static final String CONN_USER = dotenv.get("CONN_USER");
+    public static final String CONN_PASSWORD = dotenv.get("CONN_PASSWORD");
+
+    public static void main(String[] args) {
 
 
         DiscordApi api = new DiscordApiBuilder()
