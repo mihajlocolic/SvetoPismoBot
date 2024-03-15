@@ -1,5 +1,6 @@
 package org.mihajlo;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.interaction.SlashCommandInteraction;
@@ -10,9 +11,16 @@ import java.util.regex.Pattern;
 
 public class SearchChapterAndVerses {
 
+    public static Dotenv dotenv = Dotenv.load();
+    public static final String CONN_URL = dotenv.get("CONN_URL");
+    public static final String CONN_USER = dotenv.get("CONN_USER");
+    public static final String CONN_PASSWORD = dotenv.get("CONN_PASSWORD");
+
     // Does the actual searching in the database  and returns a String array with verses, chapter, start and end verses and translation.
     // Slash commands method.
     public static String[] searchChapterAndVerses(String reference, SlashCommandInteraction interaction) {
+
+
 
         String[] returnValues = new String[6];
 
@@ -43,8 +51,8 @@ public class SearchChapterAndVerses {
                     String queryVersesAndBook = "SELECT glave.stihovi, knjige.knjiga_ime FROM glave JOIN knjige ON glave.knjiga_id = knjige.knjiga_id WHERE glava_broj = ? AND glave.knjiga_id = (SELECT knjiga_id FROM knjige WHERE skracenica = ?)";
                     String queryTranslation = "SELECT prevod_ime FROM knjige JOIN prevodi ON knjige.prevod_id = prevodi.prevod_id WHERE knjiga_id = (SELECT knjiga_id FROM knjige WHERE skracenica = ?)";
                     try {
-                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/biblija", "root",
-                                "adminmihajlo");
+                        Connection connection = DriverManager.getConnection(CONN_URL, CONN_USER,
+                                CONN_PASSWORD);
 
                         PreparedStatement preparedStatement = connection.prepareStatement(queryVersesAndBook);
                         preparedStatement.setInt(1, Integer.parseInt(chapter));
@@ -190,8 +198,8 @@ public class SearchChapterAndVerses {
                     String queryVersesAndBook = "SELECT glave.stihovi, knjige.knjiga_ime FROM glave JOIN knjige ON glave.knjiga_id = knjige.knjiga_id WHERE glava_broj = ? AND glave.knjiga_id = (SELECT knjiga_id FROM knjige WHERE skracenica = ?)";
                     String queryTranslation = "SELECT prevod_ime FROM knjige JOIN prevodi ON knjige.prevod_id = prevodi.prevod_id WHERE knjiga_id = (SELECT knjiga_id FROM knjige WHERE skracenica = ?)";
                     try {
-                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/biblija", "root",
-                                "adminmihajlo");
+                        Connection connection = DriverManager.getConnection(CONN_URL, CONN_USER,
+                                CONN_PASSWORD);
 
                         PreparedStatement preparedStatement = connection.prepareStatement(queryVersesAndBook);
                         preparedStatement.setInt(1, Integer.parseInt(chapter));
