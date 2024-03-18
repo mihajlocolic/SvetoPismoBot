@@ -9,12 +9,13 @@ import org.javacord.api.interaction.SlashCommandBuilder;
 import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.interaction.SlashCommandOption;
 
-import java.awt.*;
+
 import java.sql.*;
 import java.util.List;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.awt.Color;
 
 public class Main extends SearchChapterAndVerses {
 
@@ -56,35 +57,7 @@ public class Main extends SearchChapterAndVerses {
             String messageContent = event.getMessageContent();
 
             Pattern p = Pattern.compile(r);
-            Matcher m = p.matcher(messageContent);
-
-            String referenceString = "";
-
-            if(m.find()) {
-
-                String abbreviation = m.group(1); // Abbreviation is group 1 (2 and 3 together are group 1)
-                if (abbreviation != null) {
-                    referenceString += abbreviation;
-
-                    String chapter = m.group(4); // Chapter number.
-                    if (chapter != null) {
-                        referenceString += " " + chapter;
-                    }
-
-                    String startingVerse = m.group(5);
-
-                    if (startingVerse != null) {
-                        referenceString += ':' + startingVerse;
-                    }
-
-                    String endingVerse = m.group(6);
-                    if (endingVerse != null) {
-                        referenceString += '-' + endingVerse;
-                    }
-
-
-                }
-            }
+            String referenceString = getReferenceString(p, messageContent);
 
             if (!referenceString.isEmpty()) {
 
@@ -244,9 +217,7 @@ public class Main extends SearchChapterAndVerses {
 
 
                                 event.getInteraction().respondLater()
-                                        .thenAccept(interactionOriginalResponseUpdater -> {
-                                            interactionOriginalResponseUpdater.addEmbed(firstPart).update();
-                                        });
+                                        .thenAccept(interactionOriginalResponseUpdater -> interactionOriginalResponseUpdater.addEmbed(firstPart).update());
 
                             } else {
                                 EmbedBuilder embed = new EmbedBuilder()
@@ -256,9 +227,7 @@ public class Main extends SearchChapterAndVerses {
                                         .setColor(new Color(117, 25, 25));
 
                                 interaction.respondLater()
-                                        .thenAccept(interactionOriginalResponseUpdater -> {
-                                            interactionOriginalResponseUpdater.addEmbed(embed).update();
-                                        });
+                                        .thenAccept(interactionOriginalResponseUpdater -> interactionOriginalResponseUpdater.addEmbed(embed).update());
                             }
 
 
@@ -270,9 +239,7 @@ public class Main extends SearchChapterAndVerses {
                                     .setColor(new Color(117, 25, 25));
 
                             interaction.respondLater()
-                                    .thenAccept(interactionOriginalResponseUpdater -> {
-                                        interactionOriginalResponseUpdater.addEmbed(embed).update();
-                                    });
+                                    .thenAccept(interactionOriginalResponseUpdater -> interactionOriginalResponseUpdater.addEmbed(embed).update());
 
                         }
                     }
@@ -290,25 +257,23 @@ public class Main extends SearchChapterAndVerses {
                     PreparedStatement prepStmt = conn.prepareStatement(query);
                     ResultSet rs = prepStmt.executeQuery();
 
-                    String skracenice = "\n**Књиге Старог Завета**\n";
+                    StringBuilder skracenice = new StringBuilder("\n**Књиге Старог Завета**\n");
                     int rsCount = 0;
 
                     while(rs.next()) {
                         if (rsCount == 39) {
-                            skracenice += "\n**Књиге Новог Завета**\n";
+                            skracenice.append("\n**Књиге Новог Завета**\n");
                         }
-                        skracenice += rs.getString(1) + " - " + '`' + rs.getString(2) + '`' + '\n';
+                        skracenice.append(rs.getString(1)).append(" - ").append('`').append(rs.getString(2)).append("`\n");
                         rsCount++;
                     }
 
                     EmbedBuilder embed = new EmbedBuilder()
                             .setColor(new Color(117, 25, 25))
-                            .setDescription(skracenice);
+                            .setDescription(skracenice.toString());
 
                     interaction.respondLater()
-                            .thenAccept(interactionOriginalResponseUpdater -> {
-                                interactionOriginalResponseUpdater.addEmbed(embed).update();
-                            });
+                            .thenAccept(interactionOriginalResponseUpdater -> interactionOriginalResponseUpdater.addEmbed(embed).update());
 
 
                     conn.close();
@@ -316,10 +281,40 @@ public class Main extends SearchChapterAndVerses {
                 } catch (SQLException e) {
                     System.out.println(e.getMessage());
                 }
+            }
+        });
+    }
 
+    private static String getReferenceString(Pattern p, String messageContent) {
+        Matcher m = p.matcher(messageContent);
+
+        String referenceString = "";
+
+        if(m.find()) {
+
+            String abbreviation = m.group(1); // Abbreviation is group 1 (2 and 3 together are group 1)
+            if (abbreviation != null) {
+                referenceString += abbreviation;
+
+                String chapter = m.group(4); // Chapter number.
+                if (chapter != null) {
+                    referenceString += " " + chapter;
+                }
+
+                String startingVerse = m.group(5);
+
+                if (startingVerse != null) {
+                    referenceString += ':' + startingVerse;
+                }
+
+                String endingVerse = m.group(6);
+                if (endingVerse != null) {
+                    referenceString += '-' + endingVerse;
+                }
 
 
             }
-        });
+        }
+        return referenceString;
     }
 }
