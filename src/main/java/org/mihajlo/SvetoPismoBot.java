@@ -7,6 +7,9 @@ import org.javacord.api.entity.intent.Intent;
 import org.javacord.api.interaction.SlashCommandBuilder;
 import org.javacord.api.interaction.SlashCommandOption;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +22,8 @@ public class SvetoPismoBot extends SearchChapterAndVerses {
     public static Dotenv dotenv = Dotenv.load();
     public static final String BOT_TOKEN = dotenv.get("BOT_TOKEN");
 
+    private static final Logger logger = LogManager.getLogger(SvetoPismoBot.class);
+
     public static void main(String[] args) {
 
         DiscordApi api = new DiscordApiBuilder()
@@ -26,6 +31,8 @@ public class SvetoPismoBot extends SearchChapterAndVerses {
                 .addIntents(Intent.MESSAGE_CONTENT)
                 .login()
                 .join();
+
+        logger.trace("Bot is up and running.");
 
         api.setReconnectDelay(attempt -> attempt * 2);
 

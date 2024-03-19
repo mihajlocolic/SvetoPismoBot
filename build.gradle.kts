@@ -9,7 +9,7 @@ plugins {
 }
 
 application {
-    mainClass.set("org.mihajlo.Main")
+    mainClass.set("org.mihajlo.SvetoPismoBot")
 }
 
 
@@ -24,6 +24,7 @@ dependencies {
     implementation("org.javacord:javacord:3.8.0")
     implementation("com.mysql:mysql-connector-j:8.3.0")
     implementation("io.github.cdimascio:dotenv-java:3.0.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.17.0")
 }
 
 group = "org.mihajlo"
