@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SvetoPismoBot extends SearchChapterAndVerses {
 
@@ -52,38 +50,5 @@ public class SvetoPismoBot extends SearchChapterAndVerses {
         // Message listener for getting verses through chat.
         api.addListener(new MessageListener());
 
-    }
-
-    public static String getReferenceString(Pattern p, String messageContent) {
-        Matcher m = p.matcher(messageContent);
-
-        String referenceString = "";
-
-        if(m.find()) {
-
-            String abbreviation = m.group(1); // Abbreviation is group 1 (2 and 3 together are group 1)
-            if (abbreviation != null) {
-                referenceString += abbreviation;
-
-                String chapter = m.group(4); // Chapter number.
-                if (chapter != null) {
-                    referenceString += " " + chapter;
-                }
-
-                String startingVerse = m.group(5);
-
-                if (startingVerse != null) {
-                    referenceString += ':' + startingVerse;
-                }
-
-                String endingVerse = m.group(6);
-                if (endingVerse != null) {
-                    referenceString += '-' + endingVerse;
-                }
-
-
-            }
-        }
-        return referenceString;
     }
 }

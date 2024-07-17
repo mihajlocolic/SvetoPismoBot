@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Programming\\Projects\\SvetoPismoBot\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Programming\\Projects\\SvetoPismoBot\\src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SvetoPismoBot.java",
+              "DocumentMoniker": "D:\\Programming\\Projects\\SvetoPismoBot\\src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java",
+              "ToolTip": "D:\\Programming\\Projects\\SvetoPismoBot\\src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java*",
+              "RelativeToolTip": "src\\main\\java\\org\\mihajlo\\SvetoPismoBot.java*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAfAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASmSURBVDhPbVRrbFRFFP7mvvbRBdtSRAgUlYVYBIJSE0GjhIcaQn8gpI2vUBWNBGMI/vGRNmqiUQNKAAMESDSKiYL\u002BIMFHogaMsQbXRKDIq4XSbrHQ1273dffemTmeu7vUmHiSuTN3Ht/5znfOjEDF6OyKVyDyr8O\u002BNAQZ68QpdCGNAQybSSRjv4mdf3RXtsLuKDxXFQ4fSt0lUpWpshHRv4Cn154ExRagGAEKGvR8urJgAmExJtKTZ4qe7Sn7qLeBYrTXDMtL9iRrTTYe6ixvLJsRfCjxWB0Qm8fMQIMroD5rBdn3lJe1A5GpngiEvrh92\u002BAcUtZukRIGpI7LvO6I9MuWAOOGlRjSqfWbuNuV67sTVzoZ\u002B0sHUhrQxV6IQidICSgZRcfN9fnXVi2OktBAjQRNYH\u002BLFgLxKVsLNXgVQsgbgL8jV9/4V8ck7D/8Liir4RcNeNkI/IKDAgF5bikQrukh5P08fCJugLvzCPDwMlCVddxysM6gU613QIcbKT0XyMyEKhKWtr6Ix9/ZjsUtzZClg4TlT67FklXLYZm10MKCZCLME9pnvbMKguhBeYZ\u002BZZHoCaQbQKPzgJPXID3ClbOnseTRFpw7caIEprRGw72LMGt\u002BA1SQR6eOuRqcVEYsMkJKQR9lCY7KtIHv5rXQ1tkZsZfX/54OkZqG/gvJQAn0XewuMVR8MDgbtBIrw4ZhTSyNaYir4Gcb6OGxJXoMHHR3Y7DbFf5VQTLD4gsuxxreCvjKhB2NllsohFw2N\u002B5AmyHAdIDBoFB4IkQQYd1liZNtH1L3lHrkrc16z00Y7hvF\u002Bra3S4BPtbejr/sy1r/5MjtS2PHejgpLgmZgYYZRW/AxGg5mGVagR1DX5Dh8nKfL0vjzuEDb1z5nltkVbJAXgcdxmVVRZIoufG1hjEswa3AZqSK0djF15SfoX7oMmhmyi0cM/Cja6YBpiE8ngNKhUkieqeA7LnLOKPIii\u002BHMMHLFHDJemoGyIK2CW1Zim3aYbZYTxApQWFwx8IPzlkjaCaSqoS3BZAONqKwVj6XwONMusiYzMwUKyoX2RgDFYbBlbYY1mBv/enB6DHEo2YWBWYv10LStusih6ACM998A5ZA1YshaIRQsE3nT5EpR8FQOys\u002BAopxlzo0BoZo6MjEr8CKOHZNyy90Juh5jkBG81P4\u002B4nMXcGiCG19b1m1l0zpOBG\u002BuhBqYUhKGMGFw2BFDe5lqKz7\u002B2shnHzqSSA83bU6cgcd3ystxUgpR5gL0RiN8mMXQPtPlAuae\u002BF9LH9amb2HMfwC1DFg/Qs\u002BMA\u002Brm5tG09qrPjhbhX5sBujoVyarZ\u002BP7WSTg0ywE5Oqgz7lnZsGS9mSdHYDTwDaurHTMdc2DKgLlnHFCteZrgVkFengOZugUXqxuT52puO/zCan\u002B1SxTXhoSKulCxIpwZLM2FIijCjDmRhi0ShmPu9\u002BvoYPm1ua9tgzJpH3qmXy/4kz8/X9v4VeOZmb\u002BUPLGFPnA/0srbqCKuEHyJrN5YkDUPtv5Y22qfv6U6Udlafg\u002B9hdta7cFor\u002Bjf\u002BFNp9n8scmDk/qLpf2OpqjFz0N5VcJ1deIOL9D8G/AN9VXvR1b7ukwAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-07-14T19:05:56.002Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

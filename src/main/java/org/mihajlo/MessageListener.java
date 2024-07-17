@@ -9,7 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.mihajlo.SearchChapterAndVerses.searchChapterAndVerses;
-import static org.mihajlo.SvetoPismoBot.getReferenceString;
+//import static org.mihajlo.SvetoPismoBot.getReferenceString;
+// The method used to be in SvetoPismoBot class for some reason.
 
 public class MessageListener implements MessageCreateListener {
 
@@ -100,5 +101,37 @@ public class MessageListener implements MessageCreateListener {
                 }
             }
         }
+    }
+    public static String getReferenceString(Pattern p, String messageContent) {
+        Matcher m = p.matcher(messageContent);
+
+        String referenceString = "";
+
+        if(m.find()) {
+
+            String abbreviation = m.group(1); // Abbreviation is group 1 (2 and 3 together are group 1)
+            if (abbreviation != null) {
+                referenceString += abbreviation;
+
+                String chapter = m.group(4); // Chapter number.
+                if (chapter != null) {
+                    referenceString += " " + chapter;
+                }
+
+                String startingVerse = m.group(5);
+
+                if (startingVerse != null) {
+                    referenceString += ':' + startingVerse;
+                }
+
+                String endingVerse = m.group(6);
+                if (endingVerse != null) {
+                    referenceString += '-' + endingVerse;
+                }
+
+
+            }
+        }
+        return referenceString;
     }
 }

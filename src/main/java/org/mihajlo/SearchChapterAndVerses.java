@@ -16,18 +16,22 @@ public class SearchChapterAndVerses {
     public static final String CONN_USER = dotenv.get("CONN_USER");
     public static final String CONN_PASSWORD = dotenv.get("CONN_PASSWORD");
 
+    public static String[] returnValues = new String[6];
+    public static String verses = ""; // String with verses.
+    public static String bookName = null; // String with name of the book.
+    public static String regex = "^((\\d+\\s)?([А-ШЈЉЊЋЂЏa-шјљњћЂџ]+)\\s)?\\s?(\\d+):(\\d+)(?:-(\\d+))?$";
+
     // Does the actual searching in the database  and returns a String array with verses, chapter, start and end verses and translation.
     // Slash commands method.
     public static String[] searchChapterAndVerses(String reference, SlashCommandInteraction interaction) {
 
 
-
-        String[] returnValues = new String[6];
-
-        String verses = ""; // String with verses.
-        String bookName = null; // String with name of the book.
-
-        String regex = "^((\\d+\\s)?([А-ШЈЉЊЋЂЏa-шјљњћЂџ]+)\\s)?\\s?(\\d+):(\\d+)(?:-(\\d+))?$";
+//        String[] returnValues = new String[6];
+//
+//        String verses = ""; // String with verses.
+//        String bookName = null; // String with name of the book.
+//
+//        String regex = "^((\\d+\\s)?([А-ШЈЉЊЋЂЏa-шјљњћЂџ]+)\\s)?\\s?(\\d+):(\\d+)(?:-(\\d+))?$";
 
 
         Pattern pattern = Pattern.compile(regex);
@@ -163,13 +167,6 @@ public class SearchChapterAndVerses {
 
     // For the message listener.
     public static String[] searchChapterAndVerses(String reference, MessageCreateEvent event) {
-
-        String[] returnValues = new String[6];
-
-        String verses = ""; // String with verses.
-        String bookName = null; // String with name of the book.
-
-        String regex = "^((\\d+\\s)?([А-ШЈЉЊЋЂЏa-шјљњћЂџ]+)\\s)?\\s?(\\d+):(\\d+)(?:-(\\d+))?$";
 
 
         Pattern pattern = Pattern.compile(regex);
