@@ -9,6 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.mihajlo.SearchChapterAndVerses.searchChapterAndVerses;
+import org.mihajlo.models.DataModel;
+
 //import static org.mihajlo.SvetoPismoBot.getReferenceString;
 // The method used to be in SvetoPismoBot class for some reason.
 
@@ -25,26 +27,31 @@ public class MessageListener implements MessageCreateListener {
         if (!referenceString.isEmpty()) {
 
             String[] str = searchChapterAndVerses(referenceString, event);
-            String stihovi = str[0];
-            String knjiga = str[1];
-            String glava = str[2];
-            String pocetniStih = str[3];
-            String zavrsniStih = str[4];
-            String prevod = str[5];
+
+            // NOTE: I believe this can be optimized better, perhaps i could use OOP on this.
 
 
-            if (stihovi != null) {
-                if (zavrsniStih != null) { // If there is the ending verse.
-                    if(stihovi.length() > 4096) { // If verses length exceed embed description limit.
+            DataModel dataModel = new DataModel(str[0], str[1], str[2], str[3], str[4], str[5]);
+
+//            String stihovi = str[0];
+//            String knjiga = str[1];
+//            String glava = str[2];
+//            String pocetniStih = str[3];
+//            String zavrsniStih = str[4];
+//            String prevod = str[5];
+
+            if (!dataModel.getStihovi().isEmpty()) {
+                if (!dataModel.getZavrsniStih().isEmpty()) { // If there is the ending verse.
+                    if(dataModel.getStihovi().length() > 4096) { // If verses length exceed embed description limit.
 
                         String regex = "(\\d.+)";
 
                         Pattern pattern = Pattern.compile(regex);
-                        Matcher matcher = pattern.matcher(stihovi);
+                        Matcher matcher = pattern.matcher(dataModel.getStihovi());
 
 
-                        String[] versesArray = new String[Integer.parseInt(zavrsniStih) + 1];
-                        int i = Integer.parseInt(pocetniStih);
+                        String[] versesArray = new String[Integer.parseInt(dataModel.getZavrsniStih()) + 1];
+                        int i = Integer.parseInt(dataModel.getPocetniStih());
 
                         while (matcher.find()) {
                             // Adding verses one by one in the array.
@@ -67,12 +74,13 @@ public class MessageListener implements MessageCreateListener {
 
                         }
 
+                        // NOTE: The embed builders are kinda repetitive, i'll need to find a way to optimize this and only work with one object of EmbedBuilder class.
 
                         EmbedBuilder embed = new EmbedBuilder()
-                                .setTitle(knjiga + " " + glava + ":" + pocetniStih + '-' + zavrsniStih) // The searched reference
+                                .setTitle(dataModel.getKnjiga() + " " + dataModel.getGlava() + ":" + dataModel.getPocetniStih() + '-' + dataModel.getZavrsniStih()) // The searched reference
                                 .addField("", "**Због ограничења Дискорда текст је исечен.**")
                                 .setDescription(versesString) // Verses string
-                                .setFooter("Превод: " + prevod)
+                                .setFooter("Превод: " + dataModel.getPrevod())
                                 .setColor(new Color(117, 25, 25));
 
 
@@ -80,9 +88,9 @@ public class MessageListener implements MessageCreateListener {
 
                     } else {
                         EmbedBuilder embed = new EmbedBuilder()
-                                .setTitle(knjiga + " " + glava + ":" + pocetniStih + "-" + zavrsniStih) // The searched reference
-                                .setDescription(stihovi) // Verses string
-                                .setFooter("Превод: " + prevod)
+                                .setTitle(dataModel.getKnjiga() + " " + dataModel.getGlava() + ":" + dataModel.getPocetniStih() + "-" + dataModel.getZavrsniStih()) // The searched reference
+                                .setDescription(dataModel.getStihovi()) // Verses string
+                                .setFooter("Превод: " + dataModel.getPrevod())
                                 .setColor(new Color(117, 25, 25));
 
                         event.getChannel().sendMessage(embed);
@@ -91,9 +99,9 @@ public class MessageListener implements MessageCreateListener {
 
                 } else { // If there's only a single verse searched up.
                     EmbedBuilder embed = new EmbedBuilder()
-                            .setTitle(knjiga + " " + glava + ":" + pocetniStih) // The searched reference
-                            .setDescription(stihovi) // Verses string
-                            .setFooter("Превод: " + prevod)
+                            .setTitle(dataModel.getKnjiga() + " " + dataModel.getGlava() + ":" + dataModel.getPocetniStih()) // The searched reference
+                            .setDescription(dataModel.getStihovi()) // Verses string
+                            .setFooter("Превод: " + dataModel.getPrevod())
                             .setColor(new Color(117, 25, 25));
 
                     event.getChannel().sendMessage(embed);

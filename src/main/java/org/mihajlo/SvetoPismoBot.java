@@ -34,6 +34,7 @@ public class SvetoPismoBot extends SearchChapterAndVerses {
 
         api.setReconnectDelay(attempt -> attempt * 2);
 
+
         Set<SlashCommandBuilder> builders = new HashSet<>();
 
         builders.add(new SlashCommandBuilder().setName("помоћ").setDescription("Помоћне информације за употребу бота."));
