@@ -26,14 +26,6 @@ public class SearchChapterAndVerses {
     public static String[] searchChapterAndVerses(String reference, SlashCommandInteraction interaction) {
 
 
-//        String[] returnValues = new String[6];
-//
-//        String verses = ""; // String with verses.
-//        String bookName = null; // String with name of the book.
-//
-//        String regex = "^((\\d+\\s)?([А-ШЈЉЊЋЂЏa-шјљњћЂџ]+)\\s)?\\s?(\\d+):(\\d+)(?:-(\\d+))?$";
-
-
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(reference);
         boolean matchFound = matcher.find();
